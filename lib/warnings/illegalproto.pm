@@ -1,5 +1,7 @@
 package warnings::illegalproto;
 
+# ABSTRACT: Disable illegal prototype warnings on old Perls
+
 our $WARN;
 
 use warnings;
@@ -34,13 +36,13 @@ sub unimport {
 
 =pod
 
-=HEAD1 SYNOPSIS
+=head1 SYNOPSIS
 
  use strictures 1;
  use signatures;
  no warnings::illegalproto;
 
-=HEAD1 DESCRIPTION
+=head1 DESCRIPTION
 
 This module was implemented so that people can C<< use strictures >> and
 C<< use signatures >> at the same time.  Thanks to mst, in Perl 5.12 and
