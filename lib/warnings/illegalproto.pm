@@ -42,6 +42,8 @@ sub unimport {
  use signatures;
  no warnings::illegalproto;
 
+ sub ($foo) { ... }
+
 =head1 DESCRIPTION
 
 This module was implemented so that people can C<< use strictures >> and
