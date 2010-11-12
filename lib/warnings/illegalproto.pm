@@ -22,6 +22,12 @@ use warnings qw(
 
 BEGIN { $WARN = ${^WARNING_BITS} & ~$WARN }
 
-sub unimport { ${^WARNING_BITS} = $WARN }
+sub unimport {
+   if ($] >= 5.012000) {
+      warnings->unimport('illegalproto')
+   } else {
+      ${^WARNING_BITS} = $WARN
+   }
+}
 
 1;
