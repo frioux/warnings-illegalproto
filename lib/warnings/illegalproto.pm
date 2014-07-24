@@ -23,9 +23,12 @@ our $WARN;
 use strict;
 use warnings;
 
+BEGIN {
+  *_ILLEGALPROTO_SUPPORTED = $] >= 5.012 ? sub(){1} : sub(){0};
+}
 
 sub unimport {
-   if ($] >= 5.012000) {
+   if (_ILLEGALPROTO_SUPPORTED) {
       warnings->unimport('illegalproto')
    } else {
       ${^WARNING_BITS} &= ~ $WARN
