@@ -1,6 +1,7 @@
 use strict;
 use Test::More;
 
+no warnings;
 use warnings::illegalproto;
 
 $SIG{__WARN__} = sub { die $_[0] };
