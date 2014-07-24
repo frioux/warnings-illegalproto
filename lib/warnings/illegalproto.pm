@@ -28,7 +28,7 @@ sub unimport {
    if ($] >= 5.012000) {
       warnings->unimport('illegalproto')
    } else {
-      ${^WARNING_BITS} = $WARN
+      ${^WARNING_BITS} &= ~ $WARN
    }
 }
 
