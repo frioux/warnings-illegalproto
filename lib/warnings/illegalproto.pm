@@ -27,6 +27,15 @@ BEGIN {
   *_ILLEGALPROTO_SUPPORTED = $] >= 5.012 ? sub(){1} : sub(){0};
 }
 
+sub import {
+   if (_ILLEGALPROTO_SUPPORTED) {
+      warnings->import('illegalproto')
+   }
+   else {
+      ${^WARNING_BITS} |= $WARN
+   }
+}
+
 sub unimport {
    if (_ILLEGALPROTO_SUPPORTED) {
       warnings->unimport('illegalproto')
