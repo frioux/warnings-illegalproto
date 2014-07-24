@@ -3,26 +3,26 @@ package warnings::illegalproto;
 # ABSTRACT: Disable illegal prototype warnings on old Perls
 
 our $WARN;
-
+{
+  no warnings;
+  use warnings 'syntax';
+  no warnings qw(
+    ambiguous
+    bareword
+    digit
+    parenthesis
+    precedence
+    printf
+    prototype
+    qw
+    reserved
+    semicolon
+  );
+  BEGIN { $WARN = ${^WARNING_BITS} };
+}
+use strict;
 use warnings;
 
-BEGIN { $WARN = ${^WARNING_BITS} }
-
-no warnings 'syntax';
-use warnings qw(
-  ambiguous
-  bareword
-  digit
-  parenthesis
-  precedence
-  printf
-  prototype
-  qw
-  reserved
-  semicolon
-);
-
-BEGIN { $WARN = ${^WARNING_BITS} & ~$WARN }
 
 sub unimport {
    if ($] >= 5.012000) {
